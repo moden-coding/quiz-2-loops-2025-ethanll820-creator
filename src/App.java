@@ -57,35 +57,59 @@ import java.util.*;
  */
 
 //SAMPLE USAGE: A+
-/** The magic number is 2. Shh! Don't tell anyone
- *  Enter a guess:
- *  10
- *  Way off!
- *  Enter a guess:
- *  3
- *  Very close!
- *  Enter a guess:
- *  2
- *  It took you 3 guesses.
+/**
+ * The magic number is 2. Shh! Don't tell anyone
+ * Enter a guess:
+ * 10
+ * Way off!
+ * Enter a guess:
+ * 3
+ * Very close!
+ * Enter a guess:
+ * 2
+ * It took you 3 guesses.
  */
-
-
 
 public class App {
     public static void main(String[] args) throws Exception {
-        //DO NOT TOUCH THE THREE LINES BELOW
+        // DO NOT TOUCH THE THREE LINES BELOW
         int magicNumber = getMeARandomNumber();
-        System.out.println("The magic number is "+ magicNumber + ". Shh! Don't tell anyone");
+        System.out.println("The magic number is " + magicNumber + ". Shh! Don't tell anyone");
         Scanner reader = new Scanner(System.in);
+        int guesses = 0;
 
-        //WRITE YOUR CODE IN THE SPACE BELOW
+        while (true) {
+            System.out.println("Try to guess the number: ");
+            int number = Integer.valueOf(reader.nextLine());
+            if (number > 10 || number < 1) {
+                System.out.println("Invalid number (Enter a number between 1 and 10 inclusive)");
+            } else if (number == magicNumber) {
+                System.out.println("You guessed right!");
+                System.out.println("It took you " + guesses + " guesse(s)");
+            }
 
-        
+            // else if (number != magicNumber) {
+            // System.out.println("You guessed wrong!");
+            // }
+
+            else if (magicNumber - number <= 2 && magicNumber - number > 0 ) {
+                System.out.println("Very close");
+            } else if(magicNumber - number >= -2 && magicNumber - number <= 2){
+            System.out.println("Very close!");
+            } else if (magicNumber - number > 5 && magicNumber - number > 0 ) {
+                System.out.println("way off!");
+            } else if (magicNumber - number < -5) {
+                System.out.println("way off!");
+            }
+            guesses = guesses + 1;
+        }
+
+        // WRITE YOUR CODE IN THE SPACE BELOW
+
     }
 
-
-    //Do not modify!!!
-    public static int getMeARandomNumber(){
+    // Do not modify!!!
+    public static int getMeARandomNumber() {
         Random random = new Random();
         return random.nextInt(10) + 1;
     }
